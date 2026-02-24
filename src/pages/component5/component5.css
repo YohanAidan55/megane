@@ -1,0 +1,41 @@
+
+.homePage5 {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('../../assets/reponse.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* Hack iOS pour éviter le zoom/crop du background */
+@supports (-webkit-touch-callout: none) {
+    .homePage5 {
+        background-attachment: scroll !important;
+    }
+}
+
+.card5 {
+    width: 100%;
+    overflow: auto !important;
+    max-height: 95vh;
+    border-radius: 16px;
+    border: 3px double darkgoldenrod;
+    margin: 16px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc(100vh - 50px);
+    /* Remplace l'opacité globale par un background semi-transparent */
+    background-color: rgba(255, 255, 255, 0.55)!important;
+}
+
+
+.card5 .MuiFormControlLabel-root {
+    width: 100%; /* Ensure the label takes the full width */
+}
+
+
