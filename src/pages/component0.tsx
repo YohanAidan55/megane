@@ -1,13 +1,31 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import { motion } from "framer-motion";
-import { SaveTheDateCard } from "./component6/component6";
+import { useEffect, useState } from "react";
 
 // @ts-ignore
 export default function Component0({ onShowComponents }) {
+    const weddingDate = new Date("2026-06-20T15:00:00");
 
-    const handleClick = () => {
-                onShowComponents();
+    const calculateTimeLeft = () => {
+        const difference = weddingDate.getTime() - new Date().getTime();
+        if (difference <= 0) return null;
+
+        return {
+            days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+            hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+            minutes: Math.floor((difference / 1000 / 60) % 60),
+            seconds: Math.floor((difference / 1000) % 60),
+        };
     };
+
+    const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setTimeLeft(calculateTimeLeft());
+        }, 1000);
+        return () => clearInterval(timer);
+    }, []);
 
     return (
         <Box
@@ -15,68 +33,99 @@ export default function Component0({ onShowComponents }) {
                 minHeight: "100vh",
                 display: "flex",
                 flexDirection: "column",
+                justifyContent: "space-between",
                 alignItems: "center",
-                justifyContent: "center",
                 textAlign: "center",
-                position: "relative",
                 backgroundImage:
-                    "linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)), url('assets/background0.jpg')",
-                backgroundSize: "cover, cover",
-                backgroundPosition: "center, center",
-                backgroundRepeat: "no-repeat, no-repeat",
+                    "linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)), url('assets/background0.jpg')",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                padding: 4,
             }}
         >
-            {/* בס״ד */}
-            <Typography
-                variant="body2"
-                sx={{
-                    position: "fixed",
-                    fontFamily: "sans-serif",
-                    fontSize: "0.9rem",
-                    zIndex: 100,
-                    top: 10,
-                    right: 20,
-                    color: "black",
-                }}
-            >
-                בס״ד
-            </Typography>
+            {/* HAUT : MARIAGE + NOMS */}
+            <Box sx={{ marginTop: 5 }}>
+                <motion.div
+                    initial={{ opacity: 0, y: -40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1 }}
+                >
+                    <Typography
+                        sx={{
+                            fontSize: { xs: "2rem", md: "3rem" },
+                            letterSpacing: "10px",
+                            textTransform: "uppercase",
+                            fontWeight: 500,
+                        }}
+                    >
+                        Mariage
+                    </Typography>
 
-            {/* Logo */}
+                    <Typography
+                        sx={{
+                            fontFamily: "'Great Vibes', cursive",
+                            fontSize: { xs: "3rem", md: "5rem" },
+                            marginTop: 1,
+                        }}
+                    >
+                        Mégane & Jordan
+                    </Typography>
+
+                    <Typography
+                        sx={{
+                            fontSize: { xs: "2rem", md: "3.5rem" },
+                            fontWeight: 700,
+                            letterSpacing: "5px",
+                        }}
+                    >
+                        20 Juin 2026
+                    </Typography>
+                {timeLeft && (
+                        <Typography
+                            sx={{
+                                fontSize: { xs: "2.2rem", md: "3.5rem" },
+                                fontWeight: 600,
+                                letterSpacing: "4px",
+                            }}
+                        >
+                            {timeLeft.days}j {timeLeft.hours}h {timeLeft.minutes}m{" "}
+                            {timeLeft.seconds}s
+                        </Typography>
+                )}
+
+                </motion.div>
+            </Box>
+
+
+            {/* BOUTON */}
             <motion.div
-                initial={{ opacity: 0, y: -30 }}
+                initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1 }}
-                style={{
-                    position: "absolute",
-                    top: "50px",
-                    left: 0,
-                    right: 0,
-                    display: "flex",
-                    justifyContent: "center",
-                }}
+                style={{ marginBottom: "40px" }}
             >
-                <Box
-                    component="img"
-                    src="assets/logo.png"
-                    alt="Logo"
-                    sx={{ width: 0, boxShadow: 3, borderRadius: 2 }}
-                />
-            </motion.div>
-
-            {/* Save the Date intégré */}
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5, duration: 1 }}
-                style={{ width: "100%" }}
-            >
-                <SaveTheDateCard
-                    title="Mariage Megane & Jordan"
-                    ctaLabel="Voir l’invitation"
-                    onCtaClick={handleClick}
-                    showSaveTheDateTitle={false}
-                />
+                <Button
+                    variant="contained"
+                    size="large"
+                    onClick={onShowComponents}
+                    sx={{
+                        marginBottom: 8,
+                        paddingX: 6,
+                        paddingY: 1.5,
+                        borderRadius: "40px",
+                        fontSize: "1.2rem",
+                        fontWeight: 500,
+                        backgroundColor: "#9c8557",
+                        color: "#fff",
+                        boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+                        "&:hover": {
+                            backgroundColor: "#5e5433", // légèrement plus foncé
+                            boxShadow: "0 6px 18px rgba(0,0,0,0.3)",
+                        },
+                    }}
+                >
+                    Voir l’invitation
+                </Button>
             </motion.div>
         </Box>
     );

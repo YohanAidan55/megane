@@ -1,9 +1,8 @@
 import { Box, Card, CardContent, Typography, Button } from "@mui/material";
 import type { SxProps, Theme } from "@mui/material/styles";
 import { motion, type MotionProps, type Transition } from "framer-motion";
-import type {ReactNode} from "react";
+import type { ReactNode } from "react";
 
-// Définition des props du composant
 interface EventCardProps {
     className?: string;
     cardClass?: string;
@@ -14,7 +13,7 @@ interface EventCardProps {
     subtitle?: string;
     subtitleSx?: SxProps<Theme>;
     children?: ReactNode;
-    address?: string; // supportée mais non utilisée dans l'UI
+    address?: string;
     onItineraryClick?: () => void;
     button?: boolean;
     buttonLabel?: string;
@@ -38,44 +37,84 @@ const EventCard: React.FC<EventCardProps> = ({
                                              }) => {
     return (
         <Box className={className}>
-            <Card className={cardClass}>
+            <Card
+                className={cardClass}
+                sx={{
+                    position: "relative",
+                    borderRadius: 5,
+                    background: "rgba(250, 245, 235, 0.5)", // 💕 plus transparent
+                    backdropFilter: "blur(6px)",
+                    WebkitBackdropFilter: "blur(6px)",
+                    boxShadow: "0 18px 45px rgba(0,0,0,0.12)", // ombre plus douce
+                    border: "1px solid rgba(111, 99, 61, 0.25)",
+                    overflow: "hidden",
+                }}
+            >
                 <CardContent>
-                    <MotionDiv initial={initial} animate={animate} transition={transition}>
+                    <MotionDiv
+                        initial={initial}
+                        animate={animate}
+                        transition={transition}
+                    >
+                        {/* TITRE */}
                         <Typography
                             variant="h5"
-                            sx={{ color: "var(--color-primary)",
-                                paddingBottom: "15px",
-                                borderBottom: "1px solid rgba(164, 130, 48, 0.2);",
-                                fontSize: "2.5rem",
-                                borderColor: "darkgoldenrod"}}
+                            sx={{
+                                color: "#6f633d",
+                                paddingBottom: "12px",
+                                borderBottom: "1px solid rgba(111,99,61,0.2)",
+                                fontSize: "2.2rem",
+                                letterSpacing: "2px",
+                                textAlign: "center",
+                            }}
                         >
                             {title}
                         </Typography>
+
+                        {/* SOUS-TITRE */}
                         {subtitle && (
                             <Typography
                                 variant="h4"
                                 sx={{
                                     ...subtitleSx,
-                                    color: "var(--color-primary)",
+                                    color: "#6f633d",
                                     marginTop: "20px",
-                                    fontFamily: "'Valentina Orchestra', sans-serif",
-                                    fontSize: "3rem",
-                                    marginBottom: "20px"
+                                    fontFamily: "'Great Vibes', cursive",
+                                    fontSize: "2.8rem",
+                                    marginBottom: "20px",
+                                    textAlign: "center",
                                 }}
-                                gutterBottom
                             >
                                 {subtitle}
                             </Typography>
                         )}
-                        {children}
+
+                        {/* CONTENU */}
+                        <Box sx={{ marginTop: 2 }}>{children}</Box>
+
+                        {/* BOUTON */}
                         {button && (
-                            <Button
-                                variant="outlined"
-                                sx={{ mt: 4, color: "var(--color-primary)", borderColor: "var(--color-primary)",fontSize: "1rem" }}
-                                onClick={onItineraryClick}
-                            >
-                                {buttonLabel}
-                            </Button>
+                            <Box sx={{ textAlign: "center" }}>
+                                <Button
+                                    variant="contained"
+                                    onClick={onItineraryClick}
+                                    sx={{
+                                        mt: 4,
+                                        backgroundColor: "#6f633d",
+                                        color: "#fff",
+                                        borderRadius: "30px",
+                                        paddingX: 4,
+                                        paddingY: 1.2,
+                                        fontSize: "1rem",
+                                        boxShadow: "0 6px 20px rgba(111,99,61,0.3)",
+                                        "&:hover": {
+                                            backgroundColor: "#5e5433",
+                                        },
+                                    }}
+                                >
+                                    {buttonLabel}
+                                </Button>
+                            </Box>
                         )}
                     </MotionDiv>
                 </CardContent>
