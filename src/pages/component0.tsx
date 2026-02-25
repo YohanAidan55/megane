@@ -77,7 +77,7 @@ export default function Component0({ onShowComponents }) {
                             color: "#5e5433",
                         }}
                     >
-                        20 Juin 2026
+                        16 Juin 2026
                     </Typography>
 
                     {timeLeft && (

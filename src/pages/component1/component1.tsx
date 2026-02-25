@@ -24,7 +24,7 @@ const Component1 = () => {
             </Typography>
             <Typography variant="body1" mt={2}  sx={{margin: "25px 0;"}} >
                 Mairie de Charenton-Le-Pont<br />
-                48 Rue dde Paris,<br />
+                48 Rue de Paris,<br />
                 94220 Charenton-Le-Pont
             </Typography>
             <Typography variant="h6" sx={{ color: "var(--color-primary)", mt: 2, fontWeight: "bold" }}>
