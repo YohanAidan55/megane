@@ -387,8 +387,9 @@ export default function MonFormulaire() {
                                 disabled={loading}
                                 sx={{
                                     width: "100%",
-                                    backgroundColor: loading ? "#ccc" : "#b6a341",
+                                    backgroundColor: loading ? "#ccc" : "#aa976d",
                                     textTransform: "none",
+                                    borderRadius: "30px",
                                     fontSize: "1.5rem",
                                 }}
                             >

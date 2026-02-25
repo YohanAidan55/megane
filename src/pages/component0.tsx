@@ -56,6 +56,7 @@ export default function Component0({ onShowComponents }) {
                             letterSpacing: "10px",
                             textTransform: "uppercase",
                             fontWeight: 500,
+                            color: "#000000", // ✅ ici
                         }}
                     >
                         Mariage
@@ -66,6 +67,7 @@ export default function Component0({ onShowComponents }) {
                             fontFamily: "'Great Vibes', cursive",
                             fontSize: { xs: "3rem", md: "5rem" },
                             marginTop: 1,
+                            color: "#000000",
                         }}
                     >
                         Mégane & Jordan
@@ -76,23 +78,25 @@ export default function Component0({ onShowComponents }) {
                             fontSize: { xs: "2rem", md: "3.5rem" },
                             fontWeight: 700,
                             letterSpacing: "5px",
+                            color: "#000000",
                         }}
                     >
                         20 Juin 2026
                     </Typography>
-                {timeLeft && (
+
+                    {timeLeft && (
                         <Typography
                             sx={{
                                 fontSize: { xs: "2.2rem", md: "3.5rem" },
                                 fontWeight: 600,
                                 letterSpacing: "4px",
+                                color: "#000000",
                             }}
                         >
                             {timeLeft.days}j {timeLeft.hours}h {timeLeft.minutes}m{" "}
                             {timeLeft.seconds}s
                         </Typography>
-                )}
-
+                    )}
                 </motion.div>
             </Box>
 

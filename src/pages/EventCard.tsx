@@ -42,9 +42,7 @@ const EventCard: React.FC<EventCardProps> = ({
                 sx={{
                     position: "relative",
                     borderRadius: 5,
-                    background: "rgba(250, 245, 235, 0.5)", // 💕 plus transparent
-                    backdropFilter: "blur(6px)",
-                    WebkitBackdropFilter: "blur(6px)",
+                    background: "rgba(255, 255, 255, 0.38)", // 💕 plus transparent
                     boxShadow: "0 18px 45px rgba(0,0,0,0.12)", // ombre plus douce
                     border: "1px solid rgba(111, 99, 61, 0.25)",
                     overflow: "hidden",
