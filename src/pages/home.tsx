@@ -19,6 +19,7 @@ function HomePage() {
     const audioRef = useRef(new Audio(backgroundMusic));
 
     const handleShowComponents = () => {
+        audioRef.current.currentTime = 7;
         audioRef.current.play();
         setIsPlaying(true);
         dispatch(show());
@@ -34,46 +35,49 @@ function HomePage() {
     };
 
     return (
-        <div style={{ position: 'relative', minHeight: '100vh' }}>
-            {/* Bouton play/pause */}
-            {showComponents && (
-                <IconButton
-                    onClick={togglePlayPause}
-                    style={{ position: 'fixed', top: 10, right: 10, zIndex: 1000 }}
-                >
-                    {isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
-                </IconButton>
-            )}
-
-            {/* Transition fluide entre Component0 et le reste */}
-            <AnimatePresence>
-                {!showComponents && (
-                    <motion.div
-                        key="component0"
-                        initial={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 1 }}
-                        style={{ position: 'absolute', width: '100%' }}
+        <>
+            <div className="background-image"></div>
+            <div style={{ position: 'relative', minHeight: '100vh' }}>
+                {/* Bouton play/pause */}
+                {showComponents && (
+                    <IconButton
+                        onClick={togglePlayPause}
+                        style={{ position: 'fixed', top: 10, right: 10, zIndex: 1000 }}
                     >
-                        <Component0 onShowComponents={handleShowComponents} />
+                        {isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
+                    </IconButton>
+                )}
+
+                {/* Transition fluide entre Component0 et le reste */}
+                <AnimatePresence>
+                    {!showComponents && (
+                        <motion.div
+                            key="component0"
+                            initial={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 1 }}
+                            style={{ position: 'absolute', width: '100%' }}
+                        >
+                            <Component0 onShowComponents={handleShowComponents} />
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+
+                {showComponents && (
+                    <motion.div
+                        key="components"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 1 }}
+                    >
+                        <Component1 />
+                        <Component2 />
+                        <Component5 />
+                        <Component6 />
                     </motion.div>
                 )}
-            </AnimatePresence>
-
-            {showComponents && (
-                <motion.div
-                    key="components"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 1 }}
-                >
-                    <Component1 />
-                    <Component2 />
-                    <Component5 />
-                    <Component6 />
-                </motion.div>
-            )}
-        </div>
+            </div>
+        </>
     );
 }
 
