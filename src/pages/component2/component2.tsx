@@ -33,7 +33,7 @@ const Component2 = () => {
                 Mardi 16 Juin 2026 à partir de 17h
             </Typography>
             <Typography variant="body1" sx={{ mt: 1 }}>
-                La Manoir des Cynes<br />
+                Le Manoir des Cynes<br />
                 150 les berges de seine,<br />
                 91830, Le Coudray-Montceaux
             </Typography>
