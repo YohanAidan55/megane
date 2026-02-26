@@ -17,7 +17,7 @@ const Component1 = () => {
             onItineraryClick={() => openWaze(address)}
         >
             <Typography variant="body1" gutterBottom>
-                se diront <strong>"Oui"</strong>
+                se disent <strong>"Oui"</strong>
             </Typography>
             <Typography variant="h5" sx={{ color: "var(--color-primary)", mt: 2, fontWeight: "bold" }}>
                 Mardi 9 Juin 2026 à 14h
