@@ -5,7 +5,7 @@ import "./component1.css";
 import {openWaze} from "../../utils/navigation.ts"
 
 const Component1 = () => {
-    const address = "48 Rue dde Paris, 94220 Charenton-Le-Pont";
+    const address = "48 Rue de Paris, 94220 Charenton-Le-Pont";
     return (
         <EventCard
             className="homePage1"
